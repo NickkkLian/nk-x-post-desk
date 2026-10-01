@@ -93,7 +93,9 @@ Tested so far: the script, in a fresh clone with an empty home folder (Python 3.
 as well. The skill was run once from start to finish inside a Claude Code session, on 2026-10-01, in a project
 that held one notes file, with no other skills or settings: asked for a launch post with the link in a reply and a
 second post, the agent loaded the skill, wrote two post folders, was refused once for a reply that counted 290,
-shortened it, and built `desk.html`. It has not been run inside a Codex session.
+shortened it, and built `desk.html`. On 2026-10-01 the same request was run once in an OpenAI Codex session
+(CLI 0.159.2, a clean environment): Codex loaded the skill, wrote two post folders and built the page with 0 problems;
+no refusal came up in that run, so the refusal path was not seen under Codex.
 
 ## Next to Buffer and Typefully
 
