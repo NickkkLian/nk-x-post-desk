@@ -1,0 +1,20 @@
+{
+  "name": "nk-x-post-desk",
+  "displayName": "X Post Desk",
+  "description": "Turn drafted X posts and threads into a one-tap posting page: prefilled composer links, replies chained in order, character counts. No API key, no account connection; you press Post.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Nick Lian",
+    "url": "https://github.com/NickkkLian"
+  },
+  "homepage": "https://github.com/NickkkLian/nk-x-post-desk",
+  "repository": "https://github.com/NickkkLian/nk-x-post-desk",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "agent-skills",
+    "x",
+    "twitter",
+    "posting"
+  ]
+}
