@@ -74,6 +74,9 @@ One notice, which refuses nothing and leaves the exit code alone: a bare file na
 a link (`main.py`, `lib.rs`). The line starts with `·`. Tell the user about it, and reword the name if a live link
 is not what they mean.
 
+`python3 ${CLAUDE_SKILL_DIR}/scripts/build_desk.py --selftest` plants each of these mistakes and expects the refusal.
+Each guarded behaviour was also switched off on purpose, one at a time, and the self-test went red for it.
+
 ## File names on X
 
 The script counts a file name the way X's site was seen to treat it on 2026-10-10, when 13 names were pasted as one
@@ -94,9 +97,6 @@ answer, a link.
 
 When a post depends on this, say so, and tell the user how to check again in a minute: paste the names into X's
 composer, look at which ones turn blue, and close it without posting.
-
-`python3 ${CLAUDE_SKILL_DIR}/scripts/build_desk.py --selftest` plants each of these mistakes and expects the refusal.
-Each guarded behaviour was also switched off on purpose, one at a time, and the self-test went red for it.
 
 ## What the page is
 

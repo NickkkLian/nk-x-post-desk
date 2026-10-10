@@ -23,7 +23,7 @@ pasted into the second post's reply field. The example's tool and posts are inve
 | `index.js` | plain text | 8 | `.js` is not a top-level domain |
 | `package.json` | plain text | 12 | `.json` is not one |
 | `main.go` | plain text | 7 | `.go` is not one |
-| `my_script.py` | plain text | 12 | the underscore: X does not link a name that has one before the ending |
+| `my_script.py` | plain text | 12 | the underscore: X does not link a name that has one before the ending (one name seen; the rule is the library's) |
 | `CLAUDE.md` | plain text | 9 | `.md` is a top-level domain (Moldova's) that X has left as plain text since spring 2026 |
 | `README.md` | plain text | 9 | the same |
 
@@ -190,15 +190,16 @@ Start a new session afterwards; skills load when a session starts. Or skip the a
 python3 scripts/build_desk.py --selftest
 ```
 
-42 checks: 21 sample texts against X's count, a planted mistake for every refusal, 16 pasted links of which only the
-real post links may become a reply, a desk whose text tries to be markup, 10 planted outside references that the
-build's own audit must see, the two ways to allow a root link, the notice for a file name in a reply, and three
-added in 0.1.1: the 13 names as X's composer showed them on 2026-10-10, the `.md` rule and the underscore rule.
-Before the first release, 54 deliberate breaks were made to the script one at a time in a sandbox copy (a part over
-280 let through, the root's link check off, the link pattern without its anchors, the text written into the page
-unescaped, the audit switched off, the notice turned into a refusal, and so on). Each one turned the self-test red
-on the check that guards it, none by crashing; the unbroken copy stayed green. For 0.1.1 the two file-name fixes
-were each switched off in a copy, and the three new checks went red for them.
+42 checks: 21 sample texts against the count by X's published rule (not a number X showed), a planted mistake for
+every refusal, 16 pasted links of which only the real post links may become a reply, a desk whose text tries to be
+markup, 10 planted outside references that the build's own audit must see, the two ways to allow a root link, the
+notice for a file name in a reply, and three added in 0.1.1: the 13 names as X's composer showed them on 2026-10-10,
+the `.md` rule and the underscore rule. Before the first release, 54 deliberate breaks were made to the script one
+at a time in a sandbox copy (a part over 280 let through, the root's link check off, the link pattern without its
+anchors, the text written into the page unescaped, the audit switched off, the notice turned into a refusal, and so
+on). Each one turned the self-test red on the check that guards it, none by crashing; the unbroken copy stayed
+green. For 0.1.1 the two file-name fixes were each switched off in a copy, and the three new checks went red for
+them.
 
 ## License
 
