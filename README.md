@@ -36,9 +36,10 @@ figure. The country and brand names are from the public list of top-level domain
 On `.md`, X's site and X's published rule differ. X's open-source
 [twitter-text](https://github.com/twitter/twitter-text) library still lists `.md` as a top-level domain, so by the
 library a bare `.md` name would be a link. In 247 public posts read on 2026-10-08, a bare `.md` name was a link in
-the 4 posts that had one up to 2026-02-20, and plain text in the 12 posts that had one from 2026-04-06 on. X has not
-documented the change, and it can change again. Not seen either way: an address written with `https://` that ends
-in `.md`; the script still counts that one as a link, as the library does.
+the 4 posts that had one up to 2026-02-20, and plain text in the 13 posts that had one from 2026-04-06 on (in one
+of the 13, a Japanese post, the names run into the text around them). X's library has not been changed to match, and
+the author has seen no statement from X; it can change again. Not seen either way: an address written with
+`https://` that ends in `.md`; the script still counts that one as a link, as the library does.
 
 To check again in a minute: paste a line of file names into X's composer, look at which ones turn blue, and close it
 without posting.

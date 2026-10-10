@@ -74,13 +74,14 @@ OTHER_PICTURES = {".svg", ".heic", ".heif", ".bmp", ".tif", ".tiff", ".avif", ".
 #   - a character counts 1 inside U+0000-10FF, U+2000-200D, U+2010-201F, U+2032-2037, and 2 everywhere else: Chinese,
 #     Japanese and Korean text, full-width punctuation, arrows, the ellipsis character, check marks, emoji.
 #
-# Where X's site was seen to differ from that library (X has not documented it, and it can change again):
+# Where X's site was seen to differ from that library (the author has seen no statement from X; it can change again):
 #   - a bare name ending in .md (README.md, notes.md) is plain text on X, although .md is still on the library's list.
 #     Seen on 2026-10-10 in X's web composer: 13 names were pasted as one line and nothing was posted. The two .md
 #     names stayed plain text, as did index.js, package.json, main.go and my_script.py; main.py, install.sh, lib.rs,
 #     main.tf, script.pl, Main.java and backup.zip turned into links (the table COMPOSER_2026_10_10 below). Also, in
 #     247 public posts read on 2026-10-08, a bare .md name was a link in all 4 posts that had one up to 2026-02-20, and
-#     plain text in all 12 posts that had one from 2026-04-06 on (12 authors). X_PLAIN_BARE holds this exception;
+#     plain text in all 13 posts that had one from 2026-04-06 on (13 authors; in one of them, a Japanese post, the
+#     names run into the text around them). X_PLAIN_BARE holds this exception;
 #   - not seen either way: an address written with http(s):// that ends in .md, a bare .md name followed by a path
 #     (example.md/page), and an underscore in an earlier label (my_site.example.com). These are counted as the
 #     library counts them. The composer's own number was not seen either: its counter is a ring without a figure;

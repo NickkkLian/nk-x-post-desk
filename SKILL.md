@@ -85,11 +85,12 @@ line into X's web composer and nothing was posted:
   domain); `my_script.py` (an underscore before the ending); `README.md` and every other bare name ending in `.md`.
 
 The `.md` row is what X's site does, not what X has published. X's open-source twitter-text library still lists
-`.md` as a top-level domain, and X has not documented a change. In 247 public posts read on 2026-10-08, a bare `.md`
-name was a link in the 4 posts that had one up to 2026-02-20, and plain text in the 12 posts that had one from
-2026-04-06 on. Not seen either way: an address written with `https://` that ends in `.md`, a bare `.md` name
-followed by a path, and the number X's composer counted (its counter shows no figure). For the first two the script
-keeps the library's answer, a link.
+`.md` as a top-level domain, and the author has seen no statement from X about a change. In 247 public posts read on
+2026-10-08, a bare `.md` name was a link in the 4 posts that had one up to 2026-02-20, and plain text in the 13
+posts that had one from 2026-04-06 on (in one of the 13, a Japanese post, the names run into the text around them).
+Not seen either way: an address written with `https://` that ends in `.md`, a bare `.md` name followed by a path, and
+the number X's composer counted (its counter shows no figure). For the first two the script keeps the library's
+answer, a link.
 
 When a post depends on this, say so, and tell the user how to check again in a minute: paste the names into X's
 composer, look at which ones turn blue, and close it without posting.
@@ -112,8 +113,8 @@ Each guarded behaviour was also switched off on purpose, one at a time, and the 
 ## Boundaries
 
 - It does not post, schedule, attach the picture, or check that a post went out. The user does each of these.
-- File names follow what X's site was seen to do on 2026-10-10 (see "File names on X"). X can change that again
-  without saying so; the check above takes a minute.
+- File names follow what X's site was seen to do on 2026-10-10 (see "File names on X"). X can change that again;
+  the check above takes a minute.
 - The count otherwise follows X's published rule, with one known gap: an emoji sequence (a flag, a family, a skin tone) is
   counted per code point here and as 2 on X, so the number shown can be higher than X's, never lower.
 - The reply link was tried by the author on a Mac browser. The X phone app has not been tried: if X opens a new post

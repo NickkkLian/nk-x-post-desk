@@ -108,8 +108,9 @@ The script gives the same answer for all 13, and its self-test holds this table.
   not link a bare name right after `_`. The composer agreed.
 - the two `.md` names: here X's site and its library differ. The library still lists `.md` as a top-level domain, so
   by the library these would be links. In 247 public posts read on 2026-10-08, a bare `.md` name was a link in the
-  4 posts that had one up to 2026-02-20, and plain text in the 12 posts that had one from 2026-04-06 on. X has not
-  documented the change, and it can change again.
+  4 posts that had one up to 2026-02-20, and plain text in the 13 posts that had one from 2026-04-06 on (in one of
+  the 13, a Japanese post, the names run into the text around them). The author has seen no statement from X about
+  the change, and it can change again.
 
 Not seen either way, and counted as the library counts them: an address written with `http(s)://` that ends in `.md`
 (a link), a bare `.md` name followed by a path such as `example.md/page` (a link), and a bare name with an underscore
