@@ -9,6 +9,44 @@ An agent skill (`nk-x-post-desk`) with one Python script. The picture above is `
 command below from the example in this repository, after the first post was marked as posted and a post link was
 pasted into the second post's reply field. The example's tool and posts are invented, and so is the pasted link.
 
+## File names X turns into links, and the ones it leaves
+
+| You type | In X's composer | It counts as | Why, as far as it is known |
+|---|---|---|---|
+| `main.py` | **a link** | 23, not 7 | `.py` is a top-level domain (Paraguay's) |
+| `install.sh` | **a link** | 23, not 10 | `.sh` is Saint Helena's |
+| `lib.rs` | **a link** | 23, not 6 | `.rs` is Serbia's |
+| `main.tf` | **a link** | 23, not 7 | `.tf` is the French Southern Territories' |
+| `script.pl` | **a link** | 23, not 9 | `.pl` is Poland's |
+| `Main.java` | **a link** | 23, not 9 | `.java` is a brand domain (Oracle's) |
+| `backup.zip` | **a link** | 23, not 10 | `.zip` is a generic domain, like `.com` |
+| `index.js` | plain text | 8 | `.js` is not a top-level domain |
+| `package.json` | plain text | 12 | `.json` is not one |
+| `main.go` | plain text | 7 | `.go` is not one |
+| `my_script.py` | plain text | 12 | the underscore: X does not link a name that has one before the ending |
+| `CLAUDE.md` | plain text | 9 | `.md` is a top-level domain (Moldova's) that X has left as plain text since spring 2026 |
+| `README.md` | plain text | 9 | the same |
+
+The second column is what X's web composer showed on 2026-10-10, when these 13 names were pasted as one line and
+nothing was posted: seven turned into links and six stayed text. `scripts/build_desk.py` gives the same answer for
+all 13, and its self-test holds this table. The third column is the script's count. That a link counts 23 whatever
+its length is X's published rule; the composer's own number was not seen, because its counter is a ring without a
+figure. The country and brand names are from the public list of top-level domains.
+
+On `.md`, X's site and X's published rule differ. X's open-source
+[twitter-text](https://github.com/twitter/twitter-text) library still lists `.md` as a top-level domain, so by the
+library a bare `.md` name would be a link. In 247 public posts read on 2026-10-08, a bare `.md` name was a link in
+the 4 posts that had one up to 2026-02-20, and plain text in the 12 posts that had one from 2026-04-06 on. X has not
+documented the change, and it can change again. Not seen either way: an address written with `https://` that ends
+in `.md`; the script still counts that one as a link, as the library does.
+
+To check again in a minute: paste a line of file names into X's composer, look at which ones turn blue, and close it
+without posting.
+
+X Post Desk counts a name that X links as 23, refuses it in a root post (unless you allow links there), and gives a
+one-line notice for it in a reply, before you open X. A name that X leaves as text is counted letter by letter and
+passes.
+
 ## Try it
 
 Nothing is installed, no account, no key. Python 3.9 or newer, standard library only.
@@ -20,7 +58,7 @@ python3 scripts/build_desk.py --demo
 open demo-desk.html
 ```
 
-(`open` is macOS; elsewhere, open the file in any browser.) The self-test ends on `build_desk selftest · 39/39 passed`,
+(`open` is macOS; elsewhere, open the file in any browser.) The self-test ends on `build_desk selftest · 42/42 passed`,
 and the demo prints:
 
 ```text
@@ -41,23 +79,23 @@ The numbers after `root` and `reply` are each part's length as X counts it. On t
 
 ### A mistake it catches
 
-A desk of your own is a folder per post. This root post mentions a file name:
+A desk of your own is a folder per post. This root post mentions two file names:
 
 ```bash
 mkdir -p posts/2026-11-03-hello
-printf 'read the notes in CLAUDE.md first\n=====\nthis reply is fine\n' > posts/2026-11-03-hello/post.md
+printf 'run main.py first, the notes are in CLAUDE.md\n=====\nthis reply is fine\n' > posts/2026-11-03-hello/post.md
 python3 scripts/build_desk.py posts
 ```
 
 ```text
-✘ P02 2026-11-03-hello/post.md root: X turns 'CLAUDE.md' into a link (a name that ends in a real top-level domain; it counts 23). Reword it or move it to a reply, or allow root links: --allow-root-link, or "allowRootLink": true in desk.json
+✘ P02 2026-11-03-hello/post.md root: X turns 'main.py' into a link (a name that ends in a real top-level domain; it counts 23). Reword it or move it to a reply, or allow root links: --allow-root-link, or "allowRootLink": true in desk.json
 1 post, 2 parts, 1 problem
 nothing written
 ```
 
-`.md` is Moldova's top-level domain, so on X the name `CLAUDE.md` becomes a live link, and it counts as 23
-characters whatever its length. The same goes for `main.py` and `run.sh`. The build exits 1 and writes no page until
-the folder is clean.
+`.py` is Paraguay's top-level domain, so on X the name `main.py` becomes a live link, and it counts as 23
+characters whatever its length. The same goes for `install.sh` and `lib.rs`. `CLAUDE.md` is not named in the
+refusal: X leaves it as text (the table above). The build exits 1 and writes no page until the folder is clean.
 
 A link in the root post is refused by default because many people keep the link in a reply. If you want it in the
 root, run the build with `--allow-root-link` or put `"allowRootLink": true` in `desk.json`. In a reply nothing is
@@ -70,7 +108,8 @@ refused: a file name there gets a one-line notice, and the page is built.
   `alt.txt`. The whole format and every refusal: [references/format.md](references/format.md).
 - **Counts the way X counts.** 280 per part; any link or bare domain counts 23 (the script carries X's list of 1,419
   top-level domains); Chinese, Japanese and Korean characters, arrows and emoji count 2. The rule was read from X's
-  open-source [twitter-text](https://github.com/twitter/twitter-text) library.
+  open-source [twitter-text](https://github.com/twitter/twitter-text) library, with one exception taken from X's
+  site itself: a bare name ending in `.md` is counted as plain text (the table above).
 - **Refuses before it builds.** A part over 280, a link in the root post (unless you allow it), a wrongly named
   folder, an empty part, two pictures, a picture that is not what its name says. Each refusal names the folder, the
   part and the fix.
@@ -150,13 +189,15 @@ Start a new session afterwards; skills load when a session starts. Or skip the a
 python3 scripts/build_desk.py --selftest
 ```
 
-39 checks: 21 sample texts against X's count, a planted mistake for every refusal, 16 pasted links of which only the
+42 checks: 21 sample texts against X's count, a planted mistake for every refusal, 16 pasted links of which only the
 real post links may become a reply, a desk whose text tries to be markup, 10 planted outside references that the
-build's own audit must see, the two ways to allow a root link, and the notice for a file name in a reply. Before
-release, 54 deliberate breaks were made to the script one at a time in a sandbox copy (a part over 280 let through,
-the root's link check off, the link pattern without its anchors, the text written into the page unescaped, the
-audit switched off, the notice turned into a refusal, and so on). Each one turned the self-test red on the check that
-guards it, none by crashing; the unbroken copy stayed green.
+build's own audit must see, the two ways to allow a root link, the notice for a file name in a reply, and three
+added in 0.1.1: the 13 names as X's composer showed them on 2026-10-10, the `.md` rule and the underscore rule.
+Before the first release, 54 deliberate breaks were made to the script one at a time in a sandbox copy (a part over
+280 let through, the root's link check off, the link pattern without its anchors, the text written into the page
+unescaped, the audit switched off, the notice turned into a refusal, and so on). Each one turned the self-test red
+on the check that guards it, none by crashing; the unbroken copy stayed green. For 0.1.1 the two file-name fixes
+were each switched off in a copy, and the three new checks went red for them.
 
 ## License
 
