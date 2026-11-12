@@ -2,12 +2,17 @@
 
 ![The page built from the bundled example, partly used: "3 posts · 1 posted", the first card closed and marked Posted, the second card open with its post text, "168 / 280" and an "Open in X with this text" button, then the first reply with a post link pasted into its field, the line "Got it. This reply will go under post 1234567890123456789." and a live "Open the reply in X" button](docs/desk.png)
 
-Buffer and Typefully post for you through a connected account; X Post Desk connects nothing: it turns the drafts your
-agent wrote into a page of prefilled X composer links, and you press Post.
+Turn the posts and threads your agent drafted into one page of prefilled X composer links: replies chained in order,
+every part counted the way X counts, and you press Post. No account to connect, no key.
+
+It also tells you what X will do to your text before you open X: `main.py` becomes a link there and counts 23
+characters, not 7, because `.py` is a top-level domain (Paraguay's).
 
 An agent skill (`nk-x-post-desk`) with one Python script. The picture above is `demo-desk.html`, built by the `--demo`
 command below from the example in this repository, after the first post was marked as posted and a post link was
 pasted into the second post's reply field. The example's tool and posts are invented, and so is the pasted link.
+
+Part of [nickkk-skills](https://github.com/NickkkLian/nickkk-skills): 14 agent skills that work with numbers, check an agent's work, guard a repository, and write and present.
 
 ## File names X turns into links, and the ones it leaves
 
@@ -27,9 +32,9 @@ pasted into the second post's reply field. The example's tool and posts are inve
 | `CLAUDE.md` | plain text | 9 | `.md` is a top-level domain (Moldova's) that X has left as plain text since spring 2026 |
 | `README.md` | plain text | 9 | the same |
 
-The second column is what X's web composer showed on 2026-10-10, when these 13 names were pasted as one line and
-nothing was posted: seven turned into links and six stayed text. `scripts/build_desk.py` gives the same answer for
-all 13, and its self-test holds this table. The third column is the script's count. That a link counts 23 whatever
+`scripts/build_desk.py` gives the same answer as X's web composer for all 13 names, and its self-test holds this
+table. The second column is what the composer showed on 2026-10-10, when these 13 names were pasted as one line and
+nothing was posted: seven turned into links and six stayed text. The third column is the script's count. That a link counts 23 whatever
 its length is X's published rule; the composer's own number was not seen, because its counter is a ring without a
 figure. The country and brand names are from the public list of top-level domains.
 
@@ -50,17 +55,15 @@ passes.
 
 ## Try it
 
-Nothing is installed, no account, no key. Python 3.9 or newer, standard library only.
+Clone and run the example (Python 3.9 or newer, standard library only; nothing is installed, no account, no key):
 
 ```bash
 git clone https://github.com/NickkkLian/nk-x-post-desk && cd nk-x-post-desk
-python3 scripts/build_desk.py --selftest
 python3 scripts/build_desk.py --demo
 open demo-desk.html
 ```
 
-(`open` is macOS; elsewhere, open the file in any browser.) The self-test ends on `build_desk selftest · 42/42 passed`,
-and the demo prints:
+(`open` is macOS; elsewhere, open the file in any browser.) The demo prints:
 
 ```text
 ✔ 2026-11-03-walkposter-launch · root 201 · reply 1 171 · picture poster.png
@@ -127,15 +130,7 @@ refused: a file name there gets a one-line notice, and the page is built.
 
 Install the folder as a skill (below), then ask in plain words, for example: *"Draft a launch post for this tool with
 the link in a reply. I'll post it myself."* The agent drafts into the folder format, runs the check, builds the page
-and tells you where `desk.html` is. [SKILL.md](SKILL.md) is what it reads.
-
-Tested so far: the script, in a fresh clone with an empty home folder (Python 3.13), and its self-test on Python 3.9
-as well. The skill was run once from start to finish inside a Claude Code session, on 2026-10-01, in a project
-that held one notes file, with no other skills or settings: asked for a launch post with the link in a reply and a
-second post, the agent loaded the skill, wrote two post folders, was refused once for a reply that counted 290,
-shortened it, and built `desk.html`. On 2026-10-01 the same request was run once in an OpenAI Codex session
-(CLI 0.159.2, a clean environment): Codex loaded the skill, wrote two post folders and built the page with 0 problems;
-no refusal came up in that run, so the refusal path was not seen under Codex.
+and tells you where `desk.html` is. [SKILL.md](SKILL.md) is what it reads. How it went in a Claude Code and a Codex session is under [Verify](#verify).
 
 ## Next to Buffer and Typefully
 
@@ -190,7 +185,7 @@ Start a new session afterwards; skills load when a session starts. Or skip the a
 python3 scripts/build_desk.py --selftest
 ```
 
-42 checks: 21 sample texts against the count by X's published rule (not a number X showed), a planted mistake for
+The self-test ends on `build_desk selftest · 42/42 passed`. Its 42 checks: 21 sample texts against the count by X's published rule (not a number X showed), a planted mistake for
 every refusal, 16 pasted links of which only the real post links may become a reply, a desk whose text tries to be
 markup, 10 planted outside references that the build's own audit must see, the two ways to allow a root link, the
 notice for a file name in a reply, and three added in 0.1.1: the 13 names as X's composer showed them on 2026-10-10,
@@ -200,6 +195,14 @@ anchors, the text written into the page unescaped, the audit switched off, the n
 on). Each one turned the self-test red on the check that guards it, none by crashing; the unbroken copy stayed
 green. For 0.1.1 the two file-name fixes were each switched off in a copy, and the three new checks went red for
 them.
+
+Tested so far: the script, in a fresh clone with an empty home folder (Python 3.13), and its self-test on Python 3.9
+as well. The skill was run once from start to finish inside a Claude Code session, on 2026-10-01, in a project
+that held one notes file, with no other skills or settings: asked for a launch post with the link in a reply and a
+second post, the agent loaded the skill, wrote two post folders, was refused once for a reply that counted 290,
+shortened it, and built `desk.html`. On 2026-10-01 the same request was run once in an OpenAI Codex session
+(CLI 0.159.2, a clean environment): Codex loaded the skill, wrote two post folders and built the page with 0 problems;
+no refusal came up in that run, so the refusal path was not seen under Codex.
 
 ## License
 
