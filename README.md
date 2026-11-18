@@ -49,10 +49,6 @@ the author has seen no statement from X; it can change again. Not seen either wa
 To check again in a minute: paste a line of file names into X's composer, look at which ones turn blue, and close it
 without posting.
 
-X Post Desk counts a name that X links as 23, refuses it in a root post (unless you allow links there), and gives a
-one-line notice for it in a reply, before you open X. A name that X leaves as text is counted letter by letter and
-passes.
-
 ## Try it
 
 Clone and run the example (Python 3.9 or newer, standard library only; nothing is installed, no account, no key):
@@ -97,8 +93,7 @@ python3 scripts/build_desk.py posts
 nothing written
 ```
 
-`.py` is Paraguay's top-level domain, so on X the name `main.py` becomes a live link, and it counts as 23
-characters whatever its length. The same goes for `install.sh` and `lib.rs`. `CLAUDE.md` is not named in the
+`CLAUDE.md` is not named in the
 refusal: X leaves it as text (the table above). The build exits 1 and writes no page until the folder is clean.
 
 A link in the root post is refused by default because many people keep the link in a reply. If you want it in the
@@ -135,14 +130,13 @@ and tells you where `desk.html` is. [SKILL.md](SKILL.md) is what it reads. How i
 ## Next to Buffer and Typefully
 
 Buffer and Typefully are schedulers: you connect your X account, and they publish your posts for you at the time you
-choose. If you want posts to go out while you are away, use one of them. This does not compete with that.
+choose. If you want posts to go out while you are away, use one of them.
 
 Typefully also has an [MCP server](https://support.typefully.com/en/articles/13128440-typefully-mcp-server): its
 help page says an AI tool such as Claude Code can "create, edit, schedule, and manage drafts" in your Typefully
 account once you approve the connection. If you are fine connecting an account, that route already exists.
 
-X Post Desk is for when nothing should be connected: an agent has drafted a thread into files, and you want to post
-it yourself without connecting your account to anything. It connects nothing, stores nothing outside your browser,
+X Post Desk is for when an agent has drafted a thread into files and you want to post it yourself. It connects nothing, stores nothing outside your browser,
 and has no plan, cap or sign-up. What you give up is everything a scheduler does.
 
 ## What it does not do
